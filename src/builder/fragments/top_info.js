@@ -19,13 +19,13 @@ const TopInfo = () => {
                     <TextField placeholder="Player name" label="Player name" variant="outlined" fullWidth/>
                 </Grid>
                 <Grid item xs={12} sm={4} item>
-                    <TextField placeholder="Player name" label="Player name" variant="outlined" fullWidth/>
+                    <TextField placeholder="Race" label="Race" variant="outlined" fullWidth/>
                 </Grid>
                 <Grid item xs={12} sm={4} item>
-                    <TextField placeholder="Player name" label="Player name" variant="outlined" fullWidth/>
+                    <TextField placeholder="Alignment" label="Alignment" variant="outlined" fullWidth/>
                 </Grid>
                 <Grid item xs={12} sm={4} item>
-                    <TextField placeholder="Player name" label="Player name" variant="outlined" fullWidth/>
+                    <TextField placeholder="Experience points" label="Experience points" variant="outlined" fullWidth/>
                 </Grid>
             </Grid>
         </Grid>

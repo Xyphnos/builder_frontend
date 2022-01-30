@@ -1,12 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import { Grid, TextField, Card, Typography, Checkbox, Container } from '@material-ui/core';
 import { abilityScores } from '../utils/skillData';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {prof} from '../redux/actions'
+import creationHooks from '../hooks/creationHooks';
 
 const SavingThrows = () => {
     
-    const [abilities, setAbilities] = useState({Strength: '', Dexterity: '', Constitution: '', Intelligence: '', Wisdom: '', Charisma: ''})
+    const dispatch = useDispatch();
+    const currentState = useSelector(state => state.score)
+    const profState = useSelector(state => state.prof)
+    const [abilities, setAbilities] = useState(abilityScores)
     const [proficiency, setProficiency] = useState(0)
+    const { integerizer } = creationHooks();
 
     const checkProf = (prof) => {
         if(!isNaN(+prof)){
@@ -14,22 +20,35 @@ const SavingThrows = () => {
         }
     }
 
+    const profTicker = (entry) => {
+
+        if(abilities[entry].prof == true){
+            setAbilities({...abilities, [entry]: {value: 0, prof: false}})
+        }
+        else if(abilities[entry].prof == false){
+            setAbilities({...abilities, [entry]: {value: profState, prof: true}})
+        }
+    }
+
+    useEffect(() => {
+        dispatch(prof(proficiency))
+    },[proficiency])
+
 
     const Generate_throws = () => {
 
-        const currentState = useSelector(state => state.score)
-
-        return Object.keys(abilityScores).map( score =>(
+        return Object.keys(abilityScores).map( entry =>(
                 <Grid container alignItems='center' xs={12}>
+                    {console.log(abilities)}
                     <Grid item xs={2}>
-                        <Checkbox size='small'/>
+                        <Checkbox checked={abilities[entry].prof} onChange={() => {profTicker(entry)}} inputProps={{ 'aria-label': 'controlled' }} size='small'/>
                     </Grid>
                     <Grid item xs={2}>
-                        <TextField InputProps={{readOnly: true}} value={currentState[score]} size='small' fullWidth/>
+                        <TextField InputProps={{readOnly: true}} value={integerizer(currentState[entry], abilities[entry].value)} size='small' fullWidth/>
                     </Grid>
                     <Grid item xs={8}>
                         <Typography>
-                            {score}
+                            {entry}
                         </Typography>
                     </Grid>
                 </Grid>

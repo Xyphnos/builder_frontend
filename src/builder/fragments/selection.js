@@ -14,7 +14,7 @@ const Selection = () => {
 
     const Listing = () => {
         const data = Object.keys(displayData).map(entry => (
-            <Card onClick={() => {navigate('/characterSheet/' + displayData[entry].id)}}>
+            <Card styles={{height: '100%'}} onClick={() => {navigate('/characterSheet/' + displayData[entry].id)}}>
                 <Grid container justifyContent="center" alignItems="center" spacing={1}>
                     <Grid item xs={8}>
                         <Typography>

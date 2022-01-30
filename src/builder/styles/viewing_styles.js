@@ -8,6 +8,15 @@ const ViewingStyle = () => {
             width: '50%', 
             paddingBottom: "10px" 
         },
+        outlinedBox: {
+            border: '1px',
+            borderRadius: '5px',
+            borderColor: 'lightGray',
+            borderStyle: 'solid'
+        },
+        gridTop:{
+            paddingTop: '2%'
+        },
         
     }));
     return {

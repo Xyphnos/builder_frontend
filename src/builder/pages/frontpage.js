@@ -1,18 +1,19 @@
 import React from 'react';
-import { Card, Button } from '@material-ui/core'
+import { Card, Button, Container } from '@material-ui/core'
 import Selection from '../fragments/selection'
-import {useNavigate} from 'react-router-dom'
+import TopBar from '../fragments/topbar';
 
 const Frontpage = () => {
 
-    let navigate = useNavigate();
     const { Listing } = Selection();
 
     return (
-        <Card>
-            <Listing/>
-            <Button onClick={() => {navigate('/newSheet')}}>New character</Button>
-        </Card>
+        <Container>
+            <TopBar/>
+            <Card>
+                <Listing/>
+            </Card>
+        </Container>
     )
 }
 
